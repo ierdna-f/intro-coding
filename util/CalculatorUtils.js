@@ -4,7 +4,7 @@ const takeOdds = (array) => array.filter( e => e % 2)
 const sumAllElements = (arr) => arr.reduce((partialSum, element) => partialSum + element, 0)
 const mediaArr = (arr) => (sumAllElements(arr) / arr.length).toFixed(2);
 
-const minMax = (array) => {
+const findMinMax = (array) => {
   array.sort((a, b)=> {
     if (a < b) return -1; 
     if (a > b) return 1;
@@ -13,7 +13,7 @@ const minMax = (array) => {
   return [array[0], array[array.length-1]]
 }
 
-const getRepetitions = (arr) => {
+const sumRepetitions = (arr) => {
   const repeated = new Map()
   arr.forEach(e => {
     repeated.set(e , (repeated.get(e) || 0 ) + 1);
@@ -31,12 +31,12 @@ const sumEvens = (arr) => sumAllElements(takeEvens(arr))
 const getPercentage = (n) => `${(100 * n).toFixed(2)} %`
 
 const percentageOddNumbers = (arr) => getPercentage(takeOdds(arr).length / arr.length)
-const getRepeat = (values) => removeSingle(getRepetitions(values))
+const getRepeateds = (values) => removeSingle(sumRepetitions(values))
 
 module.exports = {
   mediaArr,
-  minMax,
-  getRepeat,
+  minMax: findMinMax,
+  getRepeat: getRepeateds,
   sumEvens,
   percentageOddNumbers,
   getPercentage
